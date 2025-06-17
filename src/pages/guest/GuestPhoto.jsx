@@ -85,7 +85,7 @@ export default function FotoTamu() {
         </button>
 
         <p className="text-center text-xs text-gray-400 pt-4">
-          © 2023 Dinas Komunikasi dan Informatika. Semua hak dilindungi.
+          © 2025 Dinas Komunikasi dan Informatika. Semua hak dilindungi.
         </p>
       </div>
     </div>

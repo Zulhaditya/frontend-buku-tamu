@@ -8,7 +8,7 @@ export default function FormTamu() {
     nama: "",
     telepon: "",
     instansi: "",
-    jenisKelamin: "",
+    email: "",
     alamat: "",
     pejabat: "",
     keperluan: "",
@@ -23,7 +23,8 @@ export default function FormTamu() {
     e.preventDefault();
     // Simpan data ke localStorage sementara sebelum pindah halaman
     localStorage.setItem("tamuData", JSON.stringify(formData));
-    navigate("/foto-tamu");
+    console.log(formData);
+    navigate("/guest/foto");
   };
 
   return (
@@ -70,7 +71,7 @@ export default function FormTamu() {
 
           <div>
             <label className="block font-semibold text-sm mb-1">
-              Asal Instansi *
+              Asal / Instansi *
             </label>
             <input
               type="text"
@@ -83,44 +84,14 @@ export default function FormTamu() {
           </div>
 
           <div>
-            <label className="block font-semibold text-sm mb-1">
-              Jenis Kelamin *
-            </label>
-            <div className="flex gap-6 items-center mt-2">
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="jenisKelamin"
-                  value="Laki-laki"
-                  onChange={handleChange}
-                  className="mr-2"
-                  required
-                />{" "}
-                Laki-laki
-              </label>
-              <label className="inline-flex items-center">
-                <input
-                  type="radio"
-                  name="jenisKelamin"
-                  value="Perempuan"
-                  onChange={handleChange}
-                  className="mr-2"
-                  required
-                />{" "}
-                Perempuan
-              </label>
-            </div>
-          </div>
-
-          <div className="md:col-span-2">
-            <label className="block font-semibold text-sm mb-1">Alamat *</label>
-            <textarea
-              name="alamat"
-              value={formData.alamat}
+            <label className="block font-semibold text-sm mb-1">Email *</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
               onChange={handleChange}
               required
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              rows="2"
             />
           </div>
 
@@ -162,7 +133,7 @@ export default function FormTamu() {
           type="submit"
           className="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition duration-300"
         >
-          Kirim Data Tamu
+          Kirim Data
         </button>
 
         <p className="text-center text-xs text-gray-400 pt-4">

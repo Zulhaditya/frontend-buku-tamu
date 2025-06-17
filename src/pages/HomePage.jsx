@@ -89,7 +89,9 @@ const HomePage = () => {
                 onClick={() => navigate(ROUTES.GUEST_FORM)}
                 className="relative px-8 py-4 bg-blue-600 text-white font-medium rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
               >
-                <span className="relative z-10">Isi Buku Tamu</span>
+                <a href="/guest/form" className="relative z-10">
+                  Isi Buku Tamu
+                </a>
                 <motion.span
                   className="absolute inset-0 bg-blue-700 rounded-lg opacity-0"
                   animate={{
