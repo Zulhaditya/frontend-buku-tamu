@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   Eye,
   EyeOff,
-  User,
   Lock,
   Calendar,
   Shield,

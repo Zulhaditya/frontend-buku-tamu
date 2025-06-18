@@ -2,12 +2,12 @@ import {
   BookOpen,
   Users,
   MapPin,
-  Phone,
   Mail,
   Calendar,
   User,
   MessageSquare,
 } from "lucide-react";
+import { Link } from "react-router";
 
 export default function DiskominfoBukuTamu() {
   return (
@@ -57,14 +57,21 @@ export default function DiskominfoBukuTamu() {
               Dinas Komunikasi dan Informatika Kabupaten Lingga
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              <Link
+                className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                to="/guest/form"
+              >
                 <User className="w-5 h-5 inline mr-2" />
                 Isi Buku Tamu
-              </button>
-              <button className="border-2 border-white text-white hover:bg-white hover:text-blue-700 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300">
+              </Link>
+              <a
+                target="_blank"
+                href="https://linggakab.go.id/"
+                className="border-2 border-white text-white hover:bg-white hover:text-blue-700 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300"
+              >
                 <Users className="w-5 h-5 inline mr-2" />
-                Lihat Pengunjung
-              </button>
+                Website Kabupaten Lingga
+              </a>
             </div>
           </div>
         </div>
@@ -133,7 +140,7 @@ export default function DiskominfoBukuTamu() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
               <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                <BookOpen className="w-12 h-12 text-blue-600 mb-4" />
+                <BookOpen className="w-12 h-12 text-blue-600 mb-4 mx-auto" />
                 <h3 className="text-xl font-semibold mb-3">
                   Pelayanan Digital
                 </h3>
@@ -143,7 +150,7 @@ export default function DiskominfoBukuTamu() {
                 </p>
               </div>
               <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-                <Users className="w-12 h-12 text-green-600 mb-4" />
+                <Users className="w-12 h-12 text-green-600 mb-4 mx-auto" />
                 <h3 className="text-xl font-semibold mb-3">
                   Komunikasi Terbuka
                 </h3>
@@ -164,18 +171,14 @@ export default function DiskominfoBukuTamu() {
             <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
               Hubungi Kami
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
                 <MapPin className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Alamat</h3>
                 <p className="text-gray-600">
-                  Jl. Raya Daik, Kabupaten Lingga, Kepulauan Riau
+                  Jl. Istana Kota Baru, Kelurahan Daik, Kecamatan Lingga,
+                  Kabupaten Lingga, Provinsi Kepulauan Riau, Kode Pos 29872
                 </p>
-              </div>
-              <div className="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
-                <Phone className="w-12 h-12 text-green-600 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Telepon</h3>
-                <p className="text-gray-600">(0771) 123-4567</p>
               </div>
               <div className="text-center p-6 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
                 <Mail className="w-12 h-12 text-purple-600 mx-auto mb-4" />
@@ -190,7 +193,7 @@ export default function DiskominfoBukuTamu() {
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 Diskominfo Kabupaten Lingga. Semua hak dilindungi.</p>
+          <p>&copy; 2025 Diskominfo Kabupaten Lingga.</p>
         </div>
       </footer>
     </div>
