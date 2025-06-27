@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import {
   Eye,
   EyeOff,
@@ -11,6 +12,7 @@ import {
   Mail,
   Smartphone,
 } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 const AdminLoginPage = () => {
   const [formData, setFormData] = useState({
@@ -20,7 +22,11 @@ const AdminLoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(
+    localStorage.getItem('rememberMe') === 'true'
+  );
+  const { login, rememberMe: contextRememberMe } = useAuth();
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,12 +38,12 @@ const AdminLoginPage = () => {
     if (error) setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (e) e.preventDefault();
     setIsLoading(true);
     setError("");
 
-    // Basic validation
+    // Validasi input
     if (!formData.email || !formData.password) {
       setError("Email dan password harus diisi");
       setIsLoading(false);
@@ -51,24 +57,16 @@ const AdminLoginPage = () => {
     }
 
     try {
-      // Simulate API call
-      setTimeout(() => {
-        // Mock authentication - replace with actual API call
-        if (
-          formData.email === "admin@diskominfo.go.id" &&
-          formData.password === "admin123"
-        ) {
-          // Success - redirect to dashboard
-          console.log("Login successful");
-          setIsLoading(false);
-          // In real app: navigate to dashboard
-        } else {
-          setError("Email atau password salah");
-          setIsLoading(false);
-        }
-      }, 1500);
+      const result = await login(formData.email, formData.password, rememberMe);
+
+      if (result.success) {
+        navigate("/admin/dashboard"); // Redirect ke dashboard setelah login berhasil
+      } else {
+        setError(result.message || "Email atau password salah");
+      }
     } catch (err) {
       setError("Terjadi kesalahan sistem. Silakan coba lagi.");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -151,22 +149,6 @@ const AdminLoginPage = () => {
                   </p>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="relative z-10 grid grid-cols-3 gap-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">1,248</div>
-              <div className="text-blue-200 text-sm">Total Tamu</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">156</div>
-              <div className="text-blue-200 text-sm">Bulan Ini</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white">98%</div>
-              <div className="text-blue-200 text-sm">Kepuasan</div>
             </div>
           </div>
         </div>
@@ -289,12 +271,6 @@ const AdminLoginPage = () => {
                   Ingat saya
                 </label>
               </div>
-              <button
-                type="button"
-                className="text-sm text-blue-600 hover:text-blue-500 font-medium"
-              >
-                Lupa password?
-              </button>
             </div>
 
             {/* Login Button */}
@@ -336,19 +312,6 @@ const AdminLoginPage = () => {
             <p className="text-sm text-gray-500">
               © 2023 Diskominfo. Semua hak dilindungi.
             </p>
-            <div className="mt-2 flex justify-center space-x-4 text-xs text-gray-400">
-              <a href="#" className="hover:text-gray-600">
-                Kebijakan Privasi
-              </a>
-              <span>•</span>
-              <a href="#" className="hover:text-gray-600">
-                Syarat Layanan
-              </a>
-              <span>•</span>
-              <a href="#" className="hover:text-gray-600">
-                Bantuan
-              </a>
-            </div>
           </div>
         </div>
       </div>

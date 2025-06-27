@@ -5,16 +5,21 @@ import Dashboard from "./pages/admin/Dashboard";
 import NotFound from "./pages/NotFound";
 import GuestData from "./pages/admin/GuestData";
 import AdminLoginPage from "./pages/admin/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
   return (
     <>
       <Routes>
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/data-tamu" element={<GuestData />} />
+        </Route>
+
         <Route path="/" element={<HomePage />} />
         <Route path="/guest/form" element={<GuestForm />} />
-        <Route path="/admin/login" element={<AdminLoginPage />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/data-tamu" element={<GuestData />} />
         <Route element={<NotFound />} path="*" />
       </Routes>
     </>
