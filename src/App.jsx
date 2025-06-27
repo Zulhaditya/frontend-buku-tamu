@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import GuestData from "./pages/admin/GuestData";
 import AdminLoginPage from "./pages/admin/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Statistik from "./pages/admin/Statistik";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/data-tamu" element={<GuestData />} />
+          <Route path="/admin/statistik" element={<Statistik />} />
         </Route>
 
         <Route path="/" element={<HomePage />} />

@@ -60,7 +60,9 @@ const AdminLoginPage = () => {
       const result = await login(formData.email, formData.password, rememberMe);
 
       if (result.success) {
-        navigate("/admin/dashboard"); // Redirect ke dashboard setelah login berhasil
+        const redirectTo = state?.from?.pathname || "/admin/dashboard";
+        navigate(redirectTo, { replace: true });
+        // navigate("/admin/dashboard"); // Redirect ke dashboard setelah login berhasil
       } else {
         setError(result.message || "Email atau password salah");
       }

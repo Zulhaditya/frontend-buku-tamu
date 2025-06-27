@@ -7,7 +7,6 @@ import {
   Users,
   FileText,
   Settings,
-  UserCheck,
   Calendar,
   Clock,
   AlertCircle,
@@ -21,8 +20,9 @@ import {
   X,
 } from "lucide-react";
 
+import Header from "../../components/Header";
+
 const Dashboard = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState("Semua Pejabat");
 
   const stats = [
@@ -102,102 +102,12 @@ const Dashboard = () => {
     },
   ];
 
-  const sidebarItems = [
-    { icon: LayoutDashboard, label: "Dashboard", active: true },
-    { icon: Users, label: "Daftar Tamu", active: false },
-    { icon: FileText, label: "Laporan", active: false },
-    { icon: Settings, label: "Pengaturan", active: false },
-    { icon: UserCheck, label: "Admin", active: false },
-  ];
-
   return (
     <div className="flex h-screen bg-gray-50">
-      {/* Sidebar */}
-      <div
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-blue-600 transform ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
-      >
-        <div className="flex items-center justify-between h-16 px-6 bg-blue-700">
-          <div className="flex items-center">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-              <Calendar className="w-5 h-5 text-blue-600" />
-            </div>
-            <div className="ml-3">
-              <h1 className="text-white font-bold text-lg">DISKOMINFO</h1>
-              <p className="text-blue-200 text-sm">Sistem Buku Tamu</p>
-            </div>
-          </div>
-          <button
-            onClick={() => setIsSidebarOpen(false)}
-            className="lg:hidden text-white"
-          >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-
-        <nav className="mt-6">
-          {sidebarItems.map((item, index) => (
-            <a
-              key={index}
-              href="#"
-              className={`flex items-center px-6 py-3 text-white hover:bg-blue-700 transition-colors ${
-                item.active ? "bg-blue-700 border-r-4 border-white" : ""
-              }`}
-            >
-              <item.icon className="w-5 h-5" />
-              <span className="ml-3 font-medium">{item.label}</span>
-            </a>
-          ))}
-        </nav>
-      </div>
-
-      {/* Overlay */}
-      {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-          onClick={() => setIsSidebarOpen(false)}
-        ></div>
-      )}
-
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
         {/* Header */}
-        <header className="bg-white shadow-sm border-b border-gray-200 h-16 flex items-center justify-between px-4 lg:px-6">
-          <div className="flex items-center">
-            <button
-              onClick={() => setIsSidebarOpen(true)}
-              className="lg:hidden text-gray-600 hover:text-gray-900"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
-            <div className="relative ml-4 lg:ml-0">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Cari tamu..."
-                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64 lg:w-80"
-              />
-            </div>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <button className="relative text-gray-600 hover:text-gray-900">
-              <Bell className="w-6 h-6" />
-              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                3
-              </span>
-            </button>
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                <User className="w-5 h-5 text-white" />
-              </div>
-              <span className="hidden lg:block text-gray-700 font-medium">
-                Admin Diskominfo
-              </span>
-            </div>
-          </div>
-        </header>
+        <Header />
 
         {/* Dashboard Content */}
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
@@ -243,13 +153,12 @@ const Dashboard = () => {
                     <AlertCircle className="w-4 h-4 text-yellow-500 mr-1" />
                   )}
                   <span
-                    className={`${
-                      stat.changeType === "increase"
-                        ? "text-green-600"
-                        : stat.changeType === "decrease"
+                    className={`${stat.changeType === "increase"
+                      ? "text-green-600"
+                      : stat.changeType === "decrease"
                         ? "text-red-600"
                         : "text-yellow-600"
-                    }`}
+                      }`}
                   >
                     {stat.change}
                   </span>

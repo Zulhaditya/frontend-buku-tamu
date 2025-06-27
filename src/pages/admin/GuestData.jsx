@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import Header from "../../components/Header";
 import {
   Search,
   Download,
@@ -241,11 +242,10 @@ const GuestData = () => {
         <button
           key={i}
           onClick={() => handlePageChange(i)}
-          className={`px-3 py-2 text-sm font-medium rounded-lg ${
-            i === currentPage
-              ? "bg-blue-600 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
-          }`}
+          className={`px-3 py-2 text-sm font-medium rounded-lg ${i === currentPage
+            ? "bg-blue-600 text-white"
+            : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-300"
+            }`}
         >
           {i}
         </button>
@@ -257,6 +257,7 @@ const GuestData = () => {
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+      <Header />
       {/* Header */}
       <div className="px-4 lg:px-6 py-4 border-b border-gray-200">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
